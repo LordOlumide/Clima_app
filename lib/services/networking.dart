@@ -22,28 +22,16 @@ class NetworkHelper {
     if (response.statusCode == 200) {
       var data = response.body;
       var decodedData = jsonDecode(data);
-      return _assignWeatherValues(datasetToBeUsed: decodedData);
+      return decodedData;
     } else {
       print(response.statusCode);
       return {
-      'temperature': '--',
-      'condition': 'Error',
-      'cityName': 'Error',
+        'temperature': '--',
+        'condition': '--',
+        'cityName': 'Error',
       };
     }
   }
-
-  Map<dynamic, dynamic> _assignWeatherValues ({datasetToBeUsed}) {
-    Map weatherData = {};
-
-    double temp = datasetToBeUsed['main']['temp'];
-    weatherData['temperature'] = temp.toInt();
-    weatherData['condition'] = datasetToBeUsed['weather'][0]['id'];
-    weatherData['cityName'] = datasetToBeUsed['name'];
-
-    return weatherData;
-  }
-
 
   // Dummy Data for tests without internet connection
 
@@ -82,6 +70,4 @@ class NetworkHelper {
     'name': 'Akure',
     'cod': 200
   };
-
 }
-
