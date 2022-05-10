@@ -1,3 +1,4 @@
+import 'package:clima/screens/location_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/services/networking.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -11,35 +12,26 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    getWeatherData();
+    getWeatherDataAndPushToLocationScreen();
   }
 
-  void getWeatherData() {
+  Future<Map> getWeatherDataAndPushToLocationScreen() async {
     NetworkHelper networkHelper = NetworkHelper();
-    networkHelper.getWeatherData();
+    Map<dynamic, dynamic> weatherData = await networkHelper.getWeatherData();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => LocationScreen(locationWeather: weatherData,)),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextButton(
-                onPressed: () {
-                  getWeatherData();
-                },
-                child: Text('Get Weather Data'),
-              ),
-            ),
-            const SpinKitSpinningLines(
-              color: Colors.white,
-              size: 150.0,
-            ),
-          ],
+        child: const SpinKitSpinningLines(
+          color: Colors.white,
+          size: 200.0,
         ),
       ),
     );
