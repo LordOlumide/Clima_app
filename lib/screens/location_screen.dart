@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
 import 'package:clima/services/weather.dart';
+import 'package:clima/services/networking.dart';
 
 class LocationScreen extends StatefulWidget {
-  final locationWeather;
+  final dynamic locationWeather;
   LocationScreen({this.locationWeather});
 
   @override
@@ -16,24 +17,35 @@ class _LocationScreenState extends State<LocationScreen> {
   String message;
   String cityName;
 
+  void updateUi(weatherData) {
+    setState(() {
+      if (weatherData != null) {
+        double temp = weatherData['main']['temp'];
+        temperature = temp.toInt();
+
+        WeatherModel weatherModel = WeatherModel();
+        int conditionInt = weatherData['weather'][0]['id'];
+        conditionEmoji = weatherModel.getWeatherIcon(conditionInt);
+        message = weatherModel.getMessage(temperature);
+        cityName = weatherData['name'];
+      } else {
+        temperature = 0;
+        message = 'Could not retrieve weather data';
+        cityName = '';
+        conditionEmoji = 'Error';
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    dynamic locationWeather = widget.locationWeather;
+    updateUi(locationWeather);
+  }
+
   @override
   Widget build(BuildContext context) {
-    Map locationWeather = widget.locationWeather;
-    print(locationWeather);
-
-    void updateUi(data) {
-      double temp = data['main']['temp'];
-      temperature = temp.toInt();
-
-      WeatherModel weatherModel = WeatherModel();
-      int conditionInt = data['weather'][0]['id'];
-      conditionEmoji = weatherModel.getWeatherIcon(conditionInt);
-      message = weatherModel.getMessage(temperature);
-      cityName = data['name'];
-    }
-
-    updateUi(locationWeather);
-
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -54,7 +66,9 @@ class _LocationScreenState extends State<LocationScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      updateUi(await NetworkHelper().getWeatherData());
+                    },
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,

@@ -15,13 +15,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
     getWeatherDataAndPushToLocationScreen();
   }
 
-  Future<Map> getWeatherDataAndPushToLocationScreen() async {
+  Future<void> getWeatherDataAndPushToLocationScreen() async {
     NetworkHelper networkHelper = NetworkHelper();
-    Map<dynamic, dynamic> weatherData = await networkHelper.getWeatherData();
+    dynamic weatherData = await networkHelper.getWeatherData();
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => LocationScreen(locationWeather: weatherData,)),
+          builder: (context) => LocationScreen(locationWeather: weatherData)),
     );
   }
 

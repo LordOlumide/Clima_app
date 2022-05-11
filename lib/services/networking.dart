@@ -11,7 +11,7 @@ class NetworkHelper {
     await userLocation.getLocation();
   }
 
-  Future<Map> getWeatherData() async {
+  Future<dynamic> getWeatherData() async {
     await getLocation();
 
     Uri url = Uri.parse('https://api.openweathermap.org/data/2.5/weather'
@@ -25,11 +25,7 @@ class NetworkHelper {
       return decodedData;
     } else {
       print(response.statusCode);
-      return {
-        'temperature': '--',
-        'condition': '--',
-        'cityName': 'Error',
-      };
+      return {};
     }
   }
 
