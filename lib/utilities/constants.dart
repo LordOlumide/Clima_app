@@ -13,16 +13,12 @@ const kMessageTextStyle = TextStyle(
 const kButtonTextStyle = TextStyle(
   fontSize: 30.0,
   fontFamily: 'Spartan MB',
-  color: Colors.white,
 );
 
-const kTextFieldTextStyle = InputDecoration(
-  icon: Icon(Icons.location_city),
-  iconColor: Colors.white,
+const kInputDecorationDefaultTheme = InputDecorationTheme(
   filled: true,
   fillColor: Colors.white,
   border: InputBorder.none,
-  hintText: 'Enter city name',
   hintStyle: TextStyle(
     color: Colors.grey,
   ),

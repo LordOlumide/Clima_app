@@ -42,7 +42,7 @@ app.*.symbols
 app.*.map.json
 
 # Security related
-/auth
+lib/auth/keys.dart
 
 # Android Studio will place build artifacts here
 /android/app/debug

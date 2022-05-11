@@ -34,7 +34,6 @@ class _CityScreenState extends State<CityScreen> {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: 50.0,
-                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -42,7 +41,10 @@ class _CityScreenState extends State<CityScreen> {
               Container(
                 padding: EdgeInsets.all(20.0),
                 child: TextField(
-                  decoration: kTextFieldTextStyle,
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.location_city),
+                    hintText: 'Enter city name',
+                  ),
                   style: TextStyle(
                     color: Colors.black,
                   ),
