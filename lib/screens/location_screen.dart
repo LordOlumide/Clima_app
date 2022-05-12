@@ -22,7 +22,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   void setToErrorScreen() {
     temperature = 0;
-    message = 'Could not retrieve weather data';
+    message = 'Internet Error';
     cityName = 'Err';
     conditionEmoji = 'Error';
   }
@@ -80,6 +80,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     },
                     child: Icon(
                       Icons.near_me,
+                      color: Colors.white,
                       size: 50.0,
                     ),
                   ),
@@ -97,6 +98,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     },
                     child: Icon(
                       Icons.location_city,
+                      color: Colors.white,
                       size: 50.0,
                     ),
                   ),

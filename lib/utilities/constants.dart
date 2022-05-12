@@ -13,9 +13,10 @@ const kMessageTextStyle = TextStyle(
 const kButtonTextStyle = TextStyle(
   fontSize: 30.0,
   fontFamily: 'Spartan MB',
+  color: Colors.white,
 );
 
-const kInputDecorationDefaultTheme = InputDecorationTheme(
+InputDecorationTheme kInputDecorationDefaultTheme = InputDecorationTheme(
   filled: true,
   fillColor: Colors.white,
   border: InputBorder.none,
@@ -30,6 +31,7 @@ const kInputDecorationDefaultTheme = InputDecorationTheme(
     borderRadius: BorderRadius.all(Radius.circular(10)),
     borderSide: BorderSide.none,
   ),
+  iconColor: Colors.white,
 );
 
 const kConditionTextStyle = TextStyle(

@@ -33,6 +33,7 @@ class _CityScreenState extends State<CityScreen> {
                     },
                     child: Icon(
                       Icons.arrow_back_ios,
+                      color: Colors.white,
                       size: 50.0,
                     ),
                   ),
@@ -53,13 +54,17 @@ class _CityScreenState extends State<CityScreen> {
                   },
                 ),
               ),
-              TextButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context, inputCity);
                 },
                 child: Text(
                   'Get Weather',
                   style: kButtonTextStyle,
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.black.withOpacity(0.4)),
                 ),
               ),
             ],

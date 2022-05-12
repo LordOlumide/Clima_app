@@ -4,14 +4,13 @@ import 'package:clima/utilities/constants.dart';
 
 void main() => runApp(MyApp());
 
+// TODO: Add forcast feature
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
         inputDecorationTheme: kInputDecorationDefaultTheme,
       ),
       home: LoadingScreen(),
